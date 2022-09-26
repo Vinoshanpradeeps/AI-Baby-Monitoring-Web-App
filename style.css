@@ -1,0 +1,29 @@
+body{
+    background-size: cover;
+}
+.heading{
+    font-size: 23px;
+    width: 100%;
+    margin: 0px;
+    background-color: red;
+    color: white;
+}
+
+#result{
+    font-size: 18px;
+}
+canvas{
+    box-shadow: 5px, 5px, 5px, grey;
+    border-radius: 15px;
+    background-color: white;
+}
+p{
+    font-size: 10;
+}
+.b{
+    background-color: black;
+    color: aqua;
+}
+.bt{
+    background-color: aqua;
+}
