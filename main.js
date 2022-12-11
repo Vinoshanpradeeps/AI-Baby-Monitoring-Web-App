@@ -3,7 +3,7 @@ object = "";
 status = "";
 
 function preload(){
-    alarm = loadImage("alarm.wav");
+    alarm = loadSound("alarm.mp3");
 }
 
 function start(){
@@ -34,13 +34,12 @@ function gotResults(error, results){
 function draw(){
     image(video, 0, 0, 380, 380);
     if(status != ""){
-        r = random(255);
-        g = ramdom(255);
-        b = random(255);
+        r = Math.floor(random(255));
+        g = Math.floor(random(255));
+        b = Math.floor(random(255));
         objectDetection.detect(video, gotResults);
         for(i = 0; i < object.length; i++){
-            alarm.stop();
-            document.getElementById("status").innerHTML = "Baby is safe";
+            document.getElementById("status").innerHTML = "Baby Found";
             document.getElementById("detection").innerHTML = "Status : Object Detected";
 
             fill(r, g, b);
@@ -50,9 +49,13 @@ function draw(){
             stroke(r, g, b);
             rect(object[i].x, object[i].y, object[i].width, object[i].height);
         }
-    }else{
-        alarm.play();
-        document.getElementById("detection").innerHTML = "Status : Object Detected";
+    }
+    if(object[i].label == "percent"){
+        document.getElementById("status").innerHTML = "Baby Found";
+        alarm.stop();
+    }
+    else{
         document.getElementById("status").innerHTML = "Baby is Missing!";
+        alarm.play();
     }
 }
